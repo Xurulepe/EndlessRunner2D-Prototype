@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject[] obstaclePrefab;
+    //[SerializeField] private GameObject[] obstaclePrefab;
     [SerializeField] private float spawnInterval = 2f;
     private float timer;
 
@@ -19,7 +19,12 @@ public class ObstacleSpawner : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        GameObject spawnedObstacle = obstaclePrefab[Random.Range(0, obstaclePrefab.Length)];
-        Instantiate(spawnedObstacle, transform.position, Quaternion.identity);
+        GameObject spawnedObstacle = ObstaclePool.Instance.GetPooledObstacle();
+        if (spawnedObstacle != null)
+        {
+            spawnedObstacle.transform.position = transform.position;
+            spawnedObstacle.transform.rotation = Quaternion.identity;
+            spawnedObstacle.SetActive(true);
+        }
     }
 }

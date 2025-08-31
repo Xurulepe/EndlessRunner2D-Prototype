@@ -3,6 +3,8 @@ using UnityEngine;
 public class SpawnedObstacle : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float lifetime = 10f;
+    private float timer;
 
     private Rigidbody2D rb;
 
@@ -11,9 +13,15 @@ public class SpawnedObstacle : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         rb.linearVelocityX = -speed;
+
+        timer += Time.deltaTime;
+        if (timer >= lifetime)
+        {
+            gameObject.SetActive(false);
+            timer = 0f;
+        }
     }
 }
