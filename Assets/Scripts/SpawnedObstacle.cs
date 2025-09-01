@@ -24,4 +24,12 @@ public class SpawnedObstacle : MonoBehaviour
             timer = 0f;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 3)
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }
