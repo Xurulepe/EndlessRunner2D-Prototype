@@ -27,7 +27,14 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameOver;
 
     [SerializeField] private GameObject obstacleSpawner;
-    
+    [SerializeField] private GameObject player;
+
+    private void Start()
+    {
+        obstacleSpawner.SetActive(false);
+        player.SetActive(false);
+    }
+
     private void Update()
     {
         if (isGameRunning)
@@ -50,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         isGameRunning = true;
         score = 0f;
+        player.SetActive(true);
         obstacleSpawner.SetActive(true);
         OnGameStarted?.Invoke();
     }
@@ -57,6 +65,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameRunning = false;
+        player.SetActive(false);
         obstacleSpawner.SetActive(false);
         OnGameOver?.Invoke();
     }
