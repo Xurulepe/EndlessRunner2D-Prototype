@@ -13,6 +13,11 @@ public class SpawnedObstacle : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.OnGameOver.AddListener(DesactiveGameObject);
+    }
+
     void Update()
     {
         rb.linearVelocityX = -speed;
@@ -20,7 +25,7 @@ public class SpawnedObstacle : MonoBehaviour
         timer += Time.deltaTime;
         if (timer >= lifetime)
         {
-            gameObject.SetActive(false);
+            DesactiveGameObject();
             timer = 0f;
         }
     }
@@ -29,7 +34,14 @@ public class SpawnedObstacle : MonoBehaviour
     {
         if (other.gameObject.layer == 3)
         {
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+            GameManager.Instance.GameOver();
         }
+    }
+
+    private void DesactiveGameObject()
+    {
+        timer = 0f;
+        gameObject.SetActive(false);
     }
 }

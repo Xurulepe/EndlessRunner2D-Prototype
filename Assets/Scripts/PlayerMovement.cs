@@ -16,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
         _rb2D = GetComponent<Rigidbody2D>();
     }
 
+    private void Start()
+    {
+        GameManager.Instance.OnGameStarted.AddListener(ActivatePlayer);
+    }
+
     public void SetJump(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
@@ -28,5 +33,10 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics2D.OverlapBox(_groundCheckPos.position, _groundCheckSize, 0f, _groundLayer);
+    }
+
+    private void ActivatePlayer()
+    {
+        gameObject.SetActive(true);
     }
 }
