@@ -26,7 +26,6 @@ public class SpawnedObstacle : MonoBehaviour
         if (timer >= lifetime)
         {
             DesactiveGameObject();
-            timer = 0f;
         }
     }
 

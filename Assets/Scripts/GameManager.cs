@@ -23,6 +23,10 @@ public class GameManager : MonoBehaviour
     private float score = 0f;
     public bool isGameRunning;
 
+    [SerializeField] private float difficultyMultiplier = 0.95f;
+    [SerializeField] private float difficultyIncreaseInterval = 30f;
+    private float difficultyTimer;
+
     public UnityEvent OnGameStarted;
     public UnityEvent OnGameOver;
 
@@ -40,6 +44,7 @@ public class GameManager : MonoBehaviour
         if (isGameRunning)
         {
             UpdateScore();
+            UpdateDifficulty();
         }
     }
 
@@ -51,6 +56,18 @@ public class GameManager : MonoBehaviour
     public string GetScore()
     {
         return Mathf.RoundToInt(score).ToString();
+    }
+
+    private void UpdateDifficulty()
+    {
+        difficultyTimer += Time.deltaTime;
+
+        if (difficultyTimer >= difficultyIncreaseInterval)
+        {
+            difficultyTimer = 0f;
+
+            obstacleSpawner.GetComponent<ObstacleSpawner>().DecreaseSpawnInterval(difficultyMultiplier);
+        }
     }
 
     public void StartGame()

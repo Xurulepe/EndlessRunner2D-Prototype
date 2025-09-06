@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    private float initialSpawnInterval;
     [SerializeField] private float spawnInterval = 2f;
+    [SerializeField] private float minimumSpawnInterval = 0.5f;
     private float timer;
+
+    private void Start()
+    {
+        initialSpawnInterval = spawnInterval;
+    }
 
     private void Update()
     {
@@ -25,5 +32,17 @@ public class ObstacleSpawner : MonoBehaviour
             spawnedObstacle.transform.rotation = Quaternion.identity;
             spawnedObstacle.SetActive(true);
         }
+    }
+
+    public void DecreaseSpawnInterval(float multiplier)
+    {
+        spawnInterval *= multiplier;
+        spawnInterval = Mathf.Max(spawnInterval, minimumSpawnInterval);
+    }
+
+    private void OnDisable()
+    {
+        spawnInterval = initialSpawnInterval;
+        timer = 0f;
     }
 }
