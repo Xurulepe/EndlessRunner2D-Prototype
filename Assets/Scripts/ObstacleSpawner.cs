@@ -6,10 +6,11 @@ public class ObstacleSpawner : MonoBehaviour
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private float minimumSpawnInterval = 0.5f;
     private float timer;
-
+    
     private void Start()
     {
         initialSpawnInterval = spawnInterval;
+        GameManager.Instance.OnGameStarted.AddListener(ResetSpawner);
     }
 
     private void Update()
@@ -40,7 +41,7 @@ public class ObstacleSpawner : MonoBehaviour
         spawnInterval = Mathf.Max(spawnInterval, minimumSpawnInterval);
     }
 
-    private void OnDisable()
+    private void ResetSpawner()
     {
         spawnInterval = initialSpawnInterval;
         timer = 0f;

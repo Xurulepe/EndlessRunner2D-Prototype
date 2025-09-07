@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         return Mathf.RoundToInt(score).ToString();
     }
 
+    public void ResetScore()
+    {
+        score = 0f;
+    }
+
     private void UpdateDifficulty()
     {
         difficultyTimer += Time.deltaTime;

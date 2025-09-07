@@ -5,16 +5,16 @@ public class ObjectPool : MonoBehaviour
 {
     [SerializeField] protected int amountToPool;
 
-    protected virtual List<GameObject> SetupPool(GameObject objectToPool)
+    protected virtual List<GameObject> SetupPool(GameObject objectToPool, GameObject parent)
     {
         List<GameObject> pooledObjects = new List<GameObject>();
 
-        pooledObjects = new List<GameObject>();
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
             tmp = Instantiate(objectToPool);
             tmp.SetActive(false);
+            tmp.transform.parent = parent.transform;
             pooledObjects.Add(tmp);
         }
 

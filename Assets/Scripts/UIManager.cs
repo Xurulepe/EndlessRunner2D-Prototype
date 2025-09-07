@@ -27,6 +27,7 @@ public class UIManager : MonoBehaviour
     {
         startMenu.SetActive(true);
         gameOverMenu.SetActive(false);
+        GameManager.Instance.ResetScore();
     }
 
     private void Start()

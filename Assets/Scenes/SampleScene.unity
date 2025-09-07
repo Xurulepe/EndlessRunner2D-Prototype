@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 147279461}
   m_Layer: 0
-  m_Name: Spawned Obstacles
+  m_Name: Pooled Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -327,7 +327,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1122569231}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &213657423
@@ -1914,6 +1915,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098104468}
   m_CullTransparentMesh: 1
+--- !u!1 &1122569230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1122569231}
+  m_Layer: 0
+  m_Name: Obstacles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1122569231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122569230}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 147279461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1208632054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2024,6 +2056,7 @@ MonoBehaviour:
   spikeObstaclePrefab: {fileID: 8278123205298102380, guid: 30396d1f04bf2b94fade5c9f816506b3, type: 3}
   projectileObstaclePrefab: {fileID: 605662278008866572, guid: f4e209b06506c774fa8ce35859506739, type: 3}
   wallObstaclePrefab: {fileID: 7038357402865096429, guid: e22c7300a5704744089e86e1d00541e7, type: 3}
+  pooledObstaclesParent: {fileID: 1122569230}
 --- !u!1 &1569215069
 GameObject:
   m_ObjectHideFlags: 0

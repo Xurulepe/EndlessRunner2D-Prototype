@@ -9,6 +9,8 @@ public class ObstaclePool : ObjectPool
     [SerializeField] private GameObject projectileObstaclePrefab;
     [SerializeField] private GameObject wallObstaclePrefab;
 
+    [SerializeField] private GameObject pooledObstaclesParent;
+
     private List<GameObject> spikeObstacles;
     private List<GameObject> projectileObstacles;
     private List<GameObject> wallObstacles;
@@ -29,9 +31,9 @@ public class ObstaclePool : ObjectPool
 
     private void Start()
     {
-        spikeObstacles = SetupPool(spikeObstaclePrefab);
-        projectileObstacles = SetupPool(projectileObstaclePrefab);
-        wallObstacles = SetupPool(wallObstaclePrefab);
+        spikeObstacles = SetupPool(spikeObstaclePrefab, pooledObstaclesParent);
+        projectileObstacles = SetupPool(projectileObstaclePrefab, pooledObstaclesParent);
+        wallObstacles = SetupPool(wallObstaclePrefab, pooledObstaclesParent);
 
         allObstaclesList = new List<List<GameObject>>()
         {
